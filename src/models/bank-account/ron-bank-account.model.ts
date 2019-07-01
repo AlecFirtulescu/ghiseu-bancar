@@ -1,10 +1,10 @@
 import { BaseBankAccount } from './base-bank-account.model';
 import { BankAccountType } from 'src/constants/base-account-type.enum';
 
-export class RonAccountType extends BaseBankAccount {
+export class RonBankAccount extends BaseBankAccount {
 
-    constructor() {
-        super(BankAccountType.RON);
+    constructor(accountNumber: string, ballance: number) {
+        super(BankAccountType.RON, accountNumber, ballance);
     }
 
     public totalBallance(): number {

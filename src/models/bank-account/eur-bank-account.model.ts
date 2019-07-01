@@ -3,10 +3,10 @@ import { BankAccountType } from 'src/constants/base-account-type.enum';
 import { ISavingsBankAccount } from './interfaces/savings-bank-account.interface';
 import { Constants } from 'src/constants/constants';
 
-export class EurAccountType extends BaseBankAccount implements ISavingsBankAccount {
+export class EurBankAccount extends BaseBankAccount implements ISavingsBankAccount {
 
-    constructor() {
-        super(BankAccountType.EUR);
+    constructor(accountNumber: string, ballance: number) {
+        super(BankAccountType.EUR, accountNumber, ballance);
     }
 
     public totalBallance(): number {
@@ -22,5 +22,9 @@ export class EurAccountType extends BaseBankAccount implements ISavingsBankAccou
 
     public addAmount(amount: number) {
         throw Error('Cannot add amount to EUR account')
+    }
+
+    public removeAmmount(amount: number) {
+        throw Error('Cannot remove amount to EUR account')
     }
 }

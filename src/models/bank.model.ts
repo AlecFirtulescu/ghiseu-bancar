@@ -4,7 +4,7 @@ import { BankAccountType } from 'src/constants/base-account-type.enum';
 
 export class Bank extends BaseModel {
     public bankCode: string;
-    public clients: Client[];
+    public clients: Client[] = [];
 
     public addClient(client: Client) {
         this.clients.push(client);
@@ -15,7 +15,7 @@ export class Bank extends BaseModel {
         if (!client) {
             throw Error('Client not found in this bank');
         }
-        return client;
+        client.print();
     }
 
     public transferMoney(fromAccountNumber: string, toAccountNumber: string, amount: number) {
@@ -35,7 +35,8 @@ export class Bank extends BaseModel {
 
         if (fromAccount.accountType === BankAccountType.RON) {
             if (fromAccount.totalBallance() - amount >= 0) {
-                fromAccount.addAmount(amount);
+                fromAccount.removeAmmount(amount);
+                toAccount.addAmount(amount);
             } else {
                 throw Error(`Cannot transfer ${fromAccount.accountType} have insuficient founds`);
             }
@@ -53,7 +54,7 @@ export class Bank extends BaseModel {
     }
 
     private findClientWithAccountNumber(accountNumber: string): Client {
-        return this.clients.find(c => c.accounts.find(a => a.accountNumber === accountNumber));
+        return this.clients.find(client => client.accounts.find(bankAccount => bankAccount.accountNumber === accountNumber) !== undefined);
     }
 
     private findClientWithCNP(cnp: string): Client {

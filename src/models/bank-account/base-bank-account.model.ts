@@ -8,9 +8,11 @@ export abstract class BaseBankAccount extends BaseModel implements ITotalBallanc
     public accountType: BankAccountType;
     protected ballance: number;
 
-    constructor(accountType: BankAccountType) {
+    constructor(accountType: BankAccountType, accountNumber: string, ballance: number) {
         super();
         this.accountType = accountType;
+        this.ballance = ballance;
+        this.accountNumber = accountNumber;
         this.id = Math.floor(Math.random() * 1000) + 1; // generating random id
     }
 
@@ -18,5 +20,9 @@ export abstract class BaseBankAccount extends BaseModel implements ITotalBallanc
 
     public addAmount(amount: number) {
         this.ballance += amount;
+    }
+
+    public removeAmmount(amount: number) {
+        this.ballance -= amount;
     }
 }
