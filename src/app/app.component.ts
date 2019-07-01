@@ -48,6 +48,18 @@ export class AppComponent {
 
     bank.printClientWithCNP('1921003002421');
     bank.printClientWithCNP('2940101909321');
+
+    try {
+      bank.transferMoney('11', '21', 150);
+    } catch (error) {
+      this.handleError(error);
+    }
+
+    try {
+      bank.transferMoney('31', '32', 150);
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
   private handleError(error: Error) {

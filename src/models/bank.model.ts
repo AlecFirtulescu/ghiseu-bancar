@@ -38,10 +38,10 @@ export class Bank extends BaseModel {
                 fromAccount.removeAmmount(amount);
                 toAccount.addAmount(amount);
             } else {
-                throw Error(`Cannot transfer ${fromAccount.accountType} have insuficient founds`);
+                throw Error(`Cannot transfer from account with number ${fromAccount.accountNumber}. Insuficient founds`);
             }
         } else {
-            throw Error(`Cannot transfer ${fromAccount.accountType}`);
+            throw Error(`Cannot transfer from account with number ${fromAccount.accountNumber}`);
         }
     }
 
